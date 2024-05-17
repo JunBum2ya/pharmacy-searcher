@@ -1,4 +1,4 @@
-package com.midas.pharmacy
+ package com.midas.pharmacy
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
