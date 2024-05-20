@@ -29,6 +29,8 @@ class PharmacyRepositoryTest(@Autowired val pharmacyRepository: PharmacyReposito
         assertThat(savedPharmacy.getPharmacyAddress()).isEqualTo(pharmacy.getPharmacyAddress())
         assertThat(savedPharmacy.getLatitude()).isEqualTo(pharmacy.getLatitude())
         assertThat(savedPharmacy.getLongitude()).isEqualTo(pharmacy.getLongitude())
+        assertThat(savedPharmacy.getCreatedAt()).isNotNull()
+        assertThat(savedPharmacy.getUpdatedAt()).isNotNull()
     }
 
     @DisplayName("약극 데이터 리스트를 저장한다.")
