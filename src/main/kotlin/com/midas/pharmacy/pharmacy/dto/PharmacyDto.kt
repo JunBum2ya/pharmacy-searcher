@@ -13,8 +13,8 @@ data class PharmacyDto(
     val pharmacyAddress: String,
     val latitude: Double,
     val longitude: Double,
-    val createdAt: LocalDateTime?,
-    val updatedAt: LocalDateTime?,
+    val createdAt: LocalDateTime? = null,
+    val updatedAt: LocalDateTime? = null,
 ) {
     companion object {
         fun from(pharmacy: Pharmacy): PharmacyDto {

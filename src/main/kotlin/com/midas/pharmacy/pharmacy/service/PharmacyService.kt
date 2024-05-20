@@ -14,6 +14,14 @@ import org.springframework.transaction.annotation.Transactional
 class PharmacyService(private val pharmacyRepository: PharmacyRepository) {
 
     /**
+     * 모든 약국 조회 메소드
+     */
+    @Transactional(readOnly = true)
+    fun findAllPharmacyList(): List<PharmacyDto> {
+        return pharmacyRepository.findAll().map { PharmacyDto.from(it) }
+    }
+
+    /**
      * 약국 수정 메소드
      */
     @Throws(CustomException::class)
