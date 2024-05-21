@@ -7,6 +7,7 @@ import com.midas.pharmacy.pharmacy.repository.PharmacyRepository
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.engine.test.logging.error
+import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.equality.shouldBeEqualToComparingFields
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.throwable.shouldHaveMessage
@@ -53,6 +54,26 @@ class PharmacyServiceTest : BehaviorSpec({
             Then("예외가 발생한다.") {
                 exception.code shouldBe ExceptionStatus.ACCESS_NOT_EXIST_ENTITY.code
                 exception shouldHaveMessage ExceptionStatus.ACCESS_NOT_EXIST_ENTITY.message
+            }
+        }
+    }
+    Given("아무것도 주어지지 않았을 때") {
+        every { pharmacyRepository.findAll() }.returns(
+            listOf(
+                Pharmacy(
+                    id = 1,
+                    pharmacyName = "독수리 약국",
+                    pharmacyAddress = "경기도",
+                    latitude = 30.4,
+                    longitude = 30.5
+                )
+            )
+        )
+        When("전체 약국을 조회한다면") {
+            val list = pharmacyService.findAllPharmacyList()
+            Then("리스트가 반환된다.") {
+                list shouldHaveSize 1
+                verify { pharmacyRepository.findAll() }
             }
         }
     }

@@ -1,17 +1,20 @@
 package com.midas.pharmacy.pharmacy.repository
 
+import com.midas.pharmacy.config.JpaConfig
 import com.midas.pharmacy.pharmacy.entity.Pharmacy
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
+import org.springframework.context.annotation.Import
 import org.springframework.data.domain.Pageable
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.test.context.ActiveProfiles
 
 @DisplayName("리포지토리 테스트 - 약국")
 @DataJpaTest
+@Import(JpaConfig::class)
 @ActiveProfiles("testdb")
 class PharmacyRepositoryTest(@Autowired val pharmacyRepository: PharmacyRepository) {
 
